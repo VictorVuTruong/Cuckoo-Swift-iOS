@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postDetailNumberOfLikesAndCommentsCell" rowHeight="35" id="KGk-i7-Jjw" customClass="PostDetailNumberOfLikesAndCommentsCell" customModule="HBTGram" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="35"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="35"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQW-NH-nu5">
+                        <rect key="frame" x="0.0" y="0.0" width="364" height="35"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7U-hb-NTN">
+                                <rect key="frame" x="8" y="7.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="YmD-vd-TGv"/>
+                                    <constraint firstAttribute="height" constant="20" id="s6l-yc-fmr"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="heart.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="likeButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bGf-Z0-lih"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDP-d3-MBe">
+                                <rect key="frame" x="36" y="8.5" width="40.5" height="18"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKG-VP-0VV">
+                                <rect key="frame" x="106.5" y="7.5" width="30" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="c6e-vk-ENm"/>
+                                    <constraint firstAttribute="width" constant="30" id="tSP-hh-DR0"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="message.fill" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSK-dh-lXh">
+                                <rect key="frame" x="144.5" y="8.5" width="76" height="18"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6e9-9P-BxI">
+                                <rect key="frame" x="36" y="7.5" width="40" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="iXf-Sd-zAo"/>
+                                    <constraint firstAttribute="width" constant="40" id="yWX-Wg-W7o"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GSK-dh-lXh" firstAttribute="leading" secondItem="RKG-VP-0VV" secondAttribute="trailing" constant="8" id="4ax-BT-j7M"/>
+                            <constraint firstItem="6e9-9P-BxI" firstAttribute="leading" secondItem="a7U-hb-NTN" secondAttribute="trailing" constant="8" id="JGJ-kX-HF2"/>
+                            <constraint firstItem="RKG-VP-0VV" firstAttribute="leading" secondItem="wDP-d3-MBe" secondAttribute="trailing" constant="30" id="Pri-b7-Iew"/>
+                            <constraint firstItem="GSK-dh-lXh" firstAttribute="centerY" secondItem="RKG-VP-0VV" secondAttribute="centerY" id="c0N-IA-PCE"/>
+                            <constraint firstItem="6e9-9P-BxI" firstAttribute="centerY" secondItem="a7U-hb-NTN" secondAttribute="centerY" id="kNc-BT-qTz"/>
+                            <constraint firstItem="a7U-hb-NTN" firstAttribute="centerY" secondItem="iQW-NH-nu5" secondAttribute="centerY" id="mph-lR-jy0"/>
+                            <constraint firstAttribute="height" constant="35" id="pVf-0i-gf9"/>
+                            <constraint firstItem="wDP-d3-MBe" firstAttribute="leading" secondItem="a7U-hb-NTN" secondAttribute="trailing" constant="8" id="q4D-EC-97g"/>
+                            <constraint firstItem="a7U-hb-NTN" firstAttribute="leading" secondItem="iQW-NH-nu5" secondAttribute="leading" constant="8" id="qqu-QS-OER"/>
+                            <constraint firstItem="RKG-VP-0VV" firstAttribute="centerY" secondItem="iQW-NH-nu5" secondAttribute="centerY" id="w6n-K6-ETF"/>
+                            <constraint firstItem="wDP-d3-MBe" firstAttribute="centerY" secondItem="iQW-NH-nu5" secondAttribute="centerY" id="yYz-GM-4B0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="iQW-NH-nu5" secondAttribute="trailing" id="CVr-zd-HUA"/>
+                    <constraint firstAttribute="bottom" secondItem="iQW-NH-nu5" secondAttribute="bottom" id="Evo-O6-PLF"/>
+                    <constraint firstItem="iQW-NH-nu5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JV0-hj-2Nm"/>
+                    <constraint firstItem="iQW-NH-nu5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jmX-Xj-K6X"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="likeButtonObject" destination="a7U-hb-NTN" id="qGv-lh-SWv"/>
+                <outlet property="likeButtonView" destination="6e9-9P-BxI" id="XXC-Dk-ams"/>
+                <outlet property="numOfComments" destination="GSK-dh-lXh" id="N7J-5N-ebY"/>
+                <outlet property="numOfLikes" destination="wDP-d3-MBe" id="ayF-Xz-7db"/>
+            </connections>
+            <point key="canvasLocation" x="163.768115942029" y="150.33482142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
+    </resources>
+</document>

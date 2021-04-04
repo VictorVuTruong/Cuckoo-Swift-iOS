@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>160171792307-4nbpv7otpdd4nsg5hkc7agi9fh4jc5sl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.160171792307-4nbpv7otpdd4nsg5hkc7agi9fh4jc5sl</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>160171792307-ljg07l1k0nmmert166q52neg59oosmns.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDcq8RgCIldkRCQ2X3H9S-pY7XG3h3noNc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>160171792307</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.beta.myhbt.MyHBT-API</string>
+	<key>PROJECT_ID</key>
+	<string>hbtgram</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hbtgram.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:160171792307:ios:d53b05f38fd3b754f61dc6</string>
+	<key>DATABASE_URL</key>
+	<string>https://hbtgram.firebaseio.com</string>
+</dict>
+</plist>
