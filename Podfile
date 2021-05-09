@@ -17,4 +17,6 @@ target 'MyHBT-API' do
   pod 'FLAnimatedImage', '~> 1.0'
   pod 'Firebase/MLVision'
   pod 'TwilioVideo', '~> 4.3'
+  pod 'Firebase/Messaging'
 end
+

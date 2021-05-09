@@ -9,12 +9,43 @@
 import UIKit
 import CoreData
 import Firebase
+import FirebaseMessaging
 import TwilioVideo
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    let gcmMessageIDKey = "gcm.message_id"
+    
+    // Notification repository
+    let notificationRepository = NotificationRepository()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+            
+        // Configure the Firebase App
+        FirebaseApp.configure()
+        
+        // [START set_messaging_delegate]
+        Messaging.messaging().delegate = self
+        // [END set_messaging_delegate]
+        
+        // Register app for Firebase Cloud Messaging
+        if #available(iOS 10.0, *) {
+          // For iOS 10 display notification (sent via APNS)
+          UNUserNotificationCenter.current().delegate = self
+
+          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+          UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: {_, _ in })
+        } else {
+          let settings: UIUserNotificationSettings =
+          UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+          application.registerUserNotificationSettings(settings)
+        }
+
+        application.registerForRemoteNotifications()
         
         if #available(iOS 10, *)
         { // iOS 10 support
@@ -26,34 +57,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if granted {
                     print("Notification Enable Successfully")
                 }else{
-                    print("Some Error Occure")
+                    print("Some Error Occur")
                 }
             }
             application.registerForRemoteNotifications()
         }
-        else if #available(iOS 9, *)
-        {
-            // iOS 9 support
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-        else if #available(iOS 8, *)
-        {
-            // iOS 8 support
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound,
-                                                                                                     .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-        else
-        { // iOS 7 support
-            application.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
-        }
-        
-        // Configure the Firebase App
-        FirebaseApp.configure()
         
         return true
     }
+    
+    // [START receive_message (data notification) ]
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+      // If you are receiving a notification message while your app is in the background,
+      // this callback will not be fired till the user taps on the notification launching the application.
+      // TODO: Handle data of notification
+      // With swizzling disabled you must let Messaging know about the message, for Analytics
+      // Messaging.messaging().appDidReceiveMessage(userInfo)
+      // Print message ID.
+        
+        var arrayOfKeys: [Any] = []
+        
+      if let messageID = userInfo[gcmMessageIDKey] {
+        print("Message ID: \(messageID)")
+        }
+                  
+        for key in userInfo.keys {
+            arrayOfKeys.append(key)
+        }
+        
+      // Print full message.
+      print(userInfo)
+
+      completionHandler(UIBackgroundFetchResult.newData)
+    }
+    // [END receive_message (data notification) ]
 
     // MARK: UISceneSession Lifecycle
 
@@ -114,46 +152,105 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    //****************************************** FOR THE NOTIFICATIONS ******************************************
-    //This is the two delegate method to get the notification in iOS 10..
-    //First for foreground
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (_ options:UNNotificationPresentationOptions) -> Void)
-    {
-        print("Handle push from foreground")
-        // custom code to handle push while app is in the foreground
-        print("\(notification.request.content.userInfo)")
-    }
-    //Second for background and close
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response:UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
-    {
-        print("Handle push from background or closed")
-        // if you set a member variable in didReceiveRemoteNotification, you will know if this is from closed or background
-        print("\(response.notification.request.content.userInfo)")
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    //****************************************** END FOR THE NOTIFICATIONS ******************************************
 }
 
+// [START ios_10_message_handling]
+@available(iOS 10, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+
+  // Receive displayed notifications for iOS 10 devices.
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              willPresent notification: UNNotification,
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    let userInfo = notification.request.content.userInfo
+
+    let messageTitle = notification.request.content.title
+    let messageContent = notification.request.content.body
+    
+    let windowScene = UIApplication.shared
+                    .connectedScenes
+                    .filter { $0.activationState == .foregroundActive }
+                    .first
+    if let windowScene = windowScene as? UIWindowScene {
+        window = UIWindow(windowScene: windowScene)
+    }
+    
+    if (messageTitle == "incoming-video-call") {
+        //self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let incomingCallViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "IncomingVideoCallViewController") as! IncomingVideoCallViewController
+        self.window?.frame = UIScreen.main.bounds
+        self.window?.backgroundColor = .clear
+        //self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        // Get the chat room name in which 2 users will be in
+        let chatRoomName = messageContent.components(separatedBy: "-")[0]
+        
+        // Get user id of the caller
+        let callerUserId = messageContent.components(separatedBy: "-")[1]
+                
+        // Pass chat room name and user id caller into next view controller
+        incomingCallViewController.callerUserId = callerUserId
+        incomingCallViewController.chatRoomName = chatRoomName
+        
+        self.window?.rootViewController = incomingCallViewController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    print("\(messageTitle) \(messageContent)")
+    
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
+    // [START_EXCLUDE]
+    // Print message ID.
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
+    
+    // [END_EXCLUDE]
+    // Print full message.
+    print(userInfo)
+
+    // Change this to your preferred presentation option
+    completionHandler([[.alert, .sound]])
+  }
+
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              didReceive response: UNNotificationResponse,
+                              withCompletionHandler completionHandler: @escaping () -> Void) {
+    let userInfo = response.notification.request.content.userInfo
+
+    // [START_EXCLUDE]
+    // Print message ID.
+    if let messageID = userInfo[gcmMessageIDKey] {
+      print("Message ID: \(messageID)")
+    }
+    // [END_EXCLUDE]
+    // With swizzling disabled you must let Messaging know about the message, for Analytics
+    // Messaging.messaging().appDidReceiveMessage(userInfo)
+    // Print full message.
+    print(userInfo)
+
+    completionHandler()
+  }
+}
+// [END ios_10_message_handling]
+
+extension AppDelegate : MessagingDelegate {
+    // [START refresh_token]
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        // The object to get device model name
+        let modelName = UIDevice.modelName
+        
+        // Model name may have space in it and cause error when saved in and fetched from database
+        // so, we will need to change those space into "-"
+        let modifiedModelName = modelName.replacingOccurrences(of: " ", with: "-")
+        
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+        
+        // Call the function to send registration token to the database
+        notificationRepository.createOrUpdateNotificationSocket(socketId: fcmToken, deviceModel: modifiedModelName) { }
+    }
+    // [END refresh_token]
+}

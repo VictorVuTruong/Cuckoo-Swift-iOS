@@ -9,8 +9,8 @@
 import Foundation
 
 class AppResource {
-    let APIURL = "http://127.0.0.1:3000"
-    //let APIURL = "https://myhbt-api.herokuapp.com"
+    //let APIURL = "http://127.0.0.1:3000"
+    let APIURL = "https://myhbt-api.herokuapp.com"
     
     // The function to generate a random 10 character string
     func randomString(length: Int) -> String {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class DashboardViewController: UIViewController, PostDetailCellDelegator, MenuProtocol {
     // Objects for the menu
@@ -41,6 +42,9 @@ class DashboardViewController: UIViewController, PostDetailCellDelegator, MenuPr
     
     // Post repository
     let postRepository = PostRepository()
+    
+    // Notification repository
+    let notificationRepository = NotificationRepository()
 
     // The table view which will display posts
     @IBOutlet weak var hbtGramTableView: UITableView!
@@ -67,6 +71,9 @@ class DashboardViewController: UIViewController, PostDetailCellDelegator, MenuPr
         super.viewDidLoad()
         
         transition = SlideInTransition(menuProtocol: self)
+
+        //let modelName = UIDevice.modelName
+        //print(modelName)
         
         // Delegate method to get data for the table view
         hbtGramTableView.dataSource = self
@@ -214,6 +221,20 @@ class DashboardViewController: UIViewController, PostDetailCellDelegator, MenuPr
     
     // The function to perform signout operation
     func signout() {
+        // Get device model name of the current device
+        let modelName = UIDevice.modelName
+        
+        // Model name may have space in it and cause error when saved in and fetched from database
+        // so, we will need to change those space into "-"
+        let modifiedModelName = modelName.replacingOccurrences(of: " ", with: "-")
+        
+        // Get the current fcm token of current device
+        let currentToken = Messaging.messaging().fcmToken
+        
+        // Call the function to remove notification socket of current user on current device
+        // Call the function to remove the notification socket
+        self.notificationRepository.deleteNotificationSocket(deviceModel: modifiedModelName, socketId: currentToken!) { }
+        
         // Call the function to sign current user out
         userRepository.signOut() {
             // Call the function and perform the segue

@@ -83,4 +83,79 @@ class NotificationRepository {
             completion(userObject, notificationContent)
         }
     }
+    
+    // The function to update or create notification socket for currently logged in user
+    func createOrUpdateNotificationSocket(socketId: String, deviceModel: String, completion: @escaping () -> ()) {
+        // Call the function to get info of the currently logged in user
+        userRepository.getInfoOfCurrentUser { (userObject) in
+            // Call the function to perform PATCH request
+            self.apiOperations.performPATCHRequest(url: "\(AppResource.init().APIURL)/api/v1/cuckooNotificationSocket/updateNotificationSocket", body: [
+                "userId": userObject._id,
+                "deviceModel": deviceModel,
+                "socketId": socketId
+            ]) { (responseData) in
+                // Get status of the operation
+                let status = responseData["status"] as! String
+                
+                // If the status is "Done", call let the view know that operation is done via callback function
+                if (status == "Done") {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    // The function to delete a notification socket
+    func deleteNotificationSocket(deviceModel: String, socketId: String, completion: @escaping () -> ()) {
+        // Call the function to get info of the currently logged in user
+        userRepository.getInfoOfCurrentUser { (userObject) in
+            // Call the function to perform the DELETE request
+            self.apiOperations.performDELETERequest(url: "\(AppResource.init().APIURL)/api/v1/cuckooNotificationSocket/deleteNotificationSocket?userId=\(userObject._id)&socketId=\(socketId)&deviceModel=\(deviceModel)") { (isDone) in
+                // If the deletion is done, call the callback function to get the view know that
+                if (isDone) {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    // The function to send notification to user with specified user id
+    func sendNotificationToUser(userId: String, notificationContent: String, notificationTitle: String, completion: @escaping () -> ()) {
+        // Call the function to get info of the currently logged in user
+        userRepository.getInfoOfCurrentUser { (userObject) in
+            // Call the function to perform POST operation with request body
+            self.apiOperations.performPOSTRequestWithBody(url: "\(AppResource.init().APIURL)/api/v1/cuckooNotifications/sendNotificationToUserBasedOnUserId", body: [
+                "userId": userId,
+                "notificationContent": notificationContent,
+                "notificationTitle": notificationTitle,
+                "notificationSender": userObject._id
+            ]) { (responseData) in
+                // Get status of the operation
+                let status = responseData["status"] as! String
+                
+                // If the status is "Done", let the view know that the operation is done via callback function
+                if (status == "Done") {
+                    completion()
+                }
+            }
+        }
+    }
+    
+    // The function to send data notification to user with specified user id
+    func sendDataNotificationToUser(userId: String, notificationContent: String, notificationTitle: String, completion: @escaping () -> ()) {
+        // Call the function to perform POST operation with request body
+        apiOperations.performPOSTRequestWithBody(url: "\(AppResource.init().APIURL)/api/v1/cuckooNotifications/sendDataNotificationToUserBasedOnUserId", body: [
+            "userId": userId,
+            "notificationContent": notificationContent,
+            "notificationTitle": notificationTitle
+        ]) { (responseData) in
+            // Get status of the operation
+            let status = responseData["status"] as! String
+            
+            // If the status is "Done", let the view know that the operation is done via callback function
+            if (status == "Done") {
+                completion()
+            }
+        }
+    }
 }

@@ -44,11 +44,20 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     // Content of the message to send
     @IBOutlet weak var messageToSendContent: UITextField!
     
+    // The button to start video call
+    @IBAction func videoCallButton(_ sender: UIButton) {
+        // Perform segue and take user to the view controller where user can start video calling
+        performSegue(withIdentifier: "chatToVideoChat", sender: self)
+    }
+    
     // User repository
     let userRepository = UserRepository()
     
     // Message repository
     let messageRepository = MessageRepository()
+    
+    // Notification repository
+    let notificationRepository = NotificationRepository()
     
     // The button to send message
     @IBAction func sendMessageButton(_ sender: UIButton) {
@@ -338,6 +347,9 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
                 // Add the newly created message object to the array of messages
                 self.chatMessages.append(newMessageObject)
                 
+                // Call the function to send message notification to the message receiver
+                self.notificationRepository.sendNotificationToUser(userId: messageReceiver, notificationContent: "\(messageContent)", notificationTitle: "message") { }
+                
                 // Reload the table view
                 DispatchQueue.main.async {
                     self.messageView.reloadData()
@@ -382,7 +394,18 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
             
             // Set the userObject in the profile detail view controller to be the message receiver
             vc!.userObject = self.messageReceiverUserObject
-        } // For other view controller, don't do anything
+        } // If the segue will take user to the video call view controller, pass chat room name into that view controller
+        else if (segue.identifier == "chatToVideoChat") {
+            // Let vc be the Video view controller
+            let vc = segue.destination as? VideoViewController
+            
+            // Set the chat room name to be the one that 2 users are in
+            vc!.chatRoomName = self.chatRoomObject._id
+            
+            // Set user id of the call receiver to the message receiver in this view controller
+            vc!.callReceiverUserId = self.messageReceiverUserId
+        }
+        // For other view controller, don't do anything
         else {
             return
         }

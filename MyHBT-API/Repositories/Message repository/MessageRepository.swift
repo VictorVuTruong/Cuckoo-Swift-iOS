@@ -88,17 +88,19 @@ class MessageRepository {
         // Call the function to perform GET operation
         apiOperations.performGETRequest(url: "\(AppResource.init().APIURL)/api/v1/message/getLatestMessageOfMessageRoom?chatRoomId=\(chatRoomId)") { (responseData) in
             do {
-                // Get the data (latest message)
-                let dataFetched = responseData["data"] as! [String: Any]
-                
-                // Convert message object from database into JSON data
-                let latestMessage = try JSONSerialization.data(withJSONObject: dataFetched, options: [])
-                
-                // Convert the JSON data into message object
-                let messageObject = try self.decoder.decode(Message.self, from: latestMessage)
-                
-                // Return latest message via callback function
-                completion(messageObject)
+                if (responseData["data"] != nil) {
+                    // Get the data (latest message)
+                    let dataFetched = responseData["data"] as! [String: Any]
+                    
+                    // Convert message object from database into JSON data
+                    let latestMessage = try JSONSerialization.data(withJSONObject: dataFetched, options: [])
+                    
+                    // Convert the JSON data into message object
+                    let messageObject = try self.decoder.decode(Message.self, from: latestMessage)
+                    
+                    // Return latest message via callback function
+                    completion(messageObject)
+                }
             } catch let error as NSError {
                 print(error.localizedDescription)
             }

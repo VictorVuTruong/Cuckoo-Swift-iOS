@@ -26,6 +26,7 @@
 		5E09F1D325706B2F00167E9F /* SeeFriendsLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09F1D225706B2F00167E9F /* SeeFriendsLocationViewController.swift */; };
 		5E0E0D2B25B7AB9E00B447D0 /* CommentOptionMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0E0D2925B7AB9E00B447D0 /* CommentOptionMenuCell.swift */; };
 		5E0E0D2C25B7AB9E00B447D0 /* CommentOptionMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E0E0D2A25B7AB9E00B447D0 /* CommentOptionMenuCell.xib */; };
+		5E1C611F2636345F00A83CC4 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C611E2636345F00A83CC4 /* UIDeviceExtension.swift */; };
 		5E293B23254CD5F400FBA60A /* ChatRoomShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E293B22254CD5F400FBA60A /* ChatRoomShowViewController.swift */; };
 		5E293B26254CD65200FBA60A /* MessageRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E293B24254CD65200FBA60A /* MessageRoomCell.swift */; };
 		5E293B27254CD65200FBA60A /* MessageRoomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E293B25254CD65200FBA60A /* MessageRoomCell.xib */; };
@@ -60,6 +61,7 @@
 		5E4DBC332515868C00FBD193 /* SignUpDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DBC322515868C00FBD193 /* SignUpDoneViewController.swift */; };
 		5E523D2525B4EDA600CD9761 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E523D2325B4EDA600CD9761 /* MenuCell.swift */; };
 		5E523D2625B4EDA600CD9761 /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E523D2425B4EDA600CD9761 /* MenuCell.xib */; };
+		5E54E987263C90DB00C9EDF7 /* IncomingVideoCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54E986263C90DB00C9EDF7 /* IncomingVideoCallViewController.swift */; };
 		5E5623BF25DA4D560004C911 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5623BE25DA4D560004C911 /* PostRepository.swift */; };
 		5E5D382C255669AE0008B057 /* MessageWithPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5D382A255669AE0008B057 /* MessageWithPhotoCell.swift */; };
 		5E5D382D255669AE0008B057 /* MessageWithPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D382B255669AE0008B057 /* MessageWithPhotoCell.xib */; };
@@ -132,6 +134,7 @@
 		5EEBBA062557DC8B004529B5 /* SearchUserToMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBA042557DC8B004529B5 /* SearchUserToMessageCell.swift */; };
 		5EEBBA072557DC8B004529B5 /* SearchUserToMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EEBBA052557DC8B004529B5 /* SearchUserToMessageCell.xib */; };
 		5EEBBA092557DE6B004529B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBA082557DE6B004529B5 /* User.swift */; };
+		5EF6D8A6263F7ADE00B1D5FC /* VideoAndAudioCallRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF6D8A5263F7ADE00B1D5FC /* VideoAndAudioCallRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -167,6 +170,7 @@
 		5E09F1D225706B2F00167E9F /* SeeFriendsLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeFriendsLocationViewController.swift; sourceTree = "<group>"; };
 		5E0E0D2925B7AB9E00B447D0 /* CommentOptionMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentOptionMenuCell.swift; sourceTree = "<group>"; };
 		5E0E0D2A25B7AB9E00B447D0 /* CommentOptionMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentOptionMenuCell.xib; sourceTree = "<group>"; };
+		5E1C611E2636345F00A83CC4 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		5E293B22254CD5F400FBA60A /* ChatRoomShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomShowViewController.swift; sourceTree = "<group>"; };
 		5E293B24254CD65200FBA60A /* MessageRoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomCell.swift; sourceTree = "<group>"; };
 		5E293B25254CD65200FBA60A /* MessageRoomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageRoomCell.xib; sourceTree = "<group>"; };
@@ -197,10 +201,12 @@
 		5E42F8DD2560A0430024E144 /* ProfileDetailHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileDetailHeaderCell.xib; sourceTree = "<group>"; };
 		5E42F8E02560A3C00024E144 /* ProfileDetailPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailPhotoCell.swift; sourceTree = "<group>"; };
 		5E42F8E12560A3C00024E144 /* ProfileDetailPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileDetailPhotoCell.xib; sourceTree = "<group>"; };
+		5E47BE86263551A300AADFA4 /* HBTGram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HBTGram.entitlements; sourceTree = "<group>"; };
 		5E4DBC302515867F00FBD193 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		5E4DBC322515868C00FBD193 /* SignUpDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDoneViewController.swift; sourceTree = "<group>"; };
 		5E523D2325B4EDA600CD9761 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		5E523D2425B4EDA600CD9761 /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		5E54E986263C90DB00C9EDF7 /* IncomingVideoCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingVideoCallViewController.swift; sourceTree = "<group>"; };
 		5E5623BE25DA4D560004C911 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
 		5E5D382A255669AE0008B057 /* MessageWithPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageWithPhotoCell.swift; sourceTree = "<group>"; };
 		5E5D382B255669AE0008B057 /* MessageWithPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageWithPhotoCell.xib; sourceTree = "<group>"; };
@@ -275,6 +281,7 @@
 		5EEBBA042557DC8B004529B5 /* SearchUserToMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserToMessageCell.swift; sourceTree = "<group>"; };
 		5EEBBA052557DC8B004529B5 /* SearchUserToMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUserToMessageCell.xib; sourceTree = "<group>"; };
 		5EEBBA082557DE6B004529B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5EF6D8A5263F7ADE00B1D5FC /* VideoAndAudioCallRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAndAudioCallRepository.swift; sourceTree = "<group>"; };
 		6A36C4D8CCA54794A973101D /* Pods_MyHBT_API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyHBT_API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21EDCA5AEAB07CC15AAFB81 /* Pods-MyHBT-API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyHBT-API.release.xcconfig"; path = "Target Support Files/Pods-MyHBT-API/Pods-MyHBT-API.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -572,6 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				5E89015A253BA1930092DD3F /* AppResource.swift */,
+				5E1C611E2636345F00A83CC4 /* UIDeviceExtension.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -703,6 +711,7 @@
 			isa = PBXGroup;
 			children = (
 				5EC7B5EA25FFF48600E62C72 /* VideoViewController.swift */,
+				5E54E986263C90DB00C9EDF7 /* IncomingVideoCallViewController.swift */,
 			);
 			path = "Video View Controllers";
 			sourceTree = "<group>";
@@ -719,6 +728,7 @@
 		5ED5220C25DA014400422900 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				5EF6D8A4263F7ABD00B1D5FC /* Video and audio call repository */,
 				5EA5DF0D25FDE79400D4D71F /* Authentication repository */,
 				5E9DEFDD25F89916001E69B6 /* Location repository */,
 				5EE5007725F4AB9900D90C02 /* Notification repository */,
@@ -762,6 +772,7 @@
 		5EDBA2EF2515162600199C7D /* MyHBT-API */ = {
 			isa = PBXGroup;
 			children = (
+				5E47BE86263551A300AADFA4 /* HBTGram.entitlements */,
 				5EB7A86A25EF28E100A62969 /* Protocols */,
 				5ED5220C25DA014400422900 /* Repositories */,
 				5E09F1C925706A0C00167E9F /* Mapbox.framework */,
@@ -808,6 +819,14 @@
 				5EE5007825F4ABAF00D90C02 /* NotificationRepository.swift */,
 			);
 			path = "Notification repository";
+			sourceTree = "<group>";
+		};
+		5EF6D8A4263F7ABD00B1D5FC /* Video and audio call repository */ = {
+			isa = PBXGroup;
+			children = (
+				5EF6D8A5263F7ADE00B1D5FC /* VideoAndAudioCallRepository.swift */,
+			);
+			path = "Video and audio call repository";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1005,6 +1024,7 @@
 				5EA123A3259F189400AB3747 /* Notification.swift in Sources */,
 				5E6FAE3325F7041F00003F6D /* CuckooPostLike.swift in Sources */,
 				5E3E561225760A6200D03817 /* UserViewCell.swift in Sources */,
+				5E54E987263C90DB00C9EDF7 /* IncomingVideoCallViewController.swift in Sources */,
 				5E89015E253BAA920092DD3F /* MenuViewController.swift in Sources */,
 				5E395FBE252BD352002795AE /* PostDetailPostContentCell.swift in Sources */,
 				5ECF43E3259D4F2A003732CA /* RecommentPhotoHeaderCell.swift in Sources */,
@@ -1015,6 +1035,7 @@
 				5E0461C32591E3DB0021F34D /* UserStatsCategoryCell.swift in Sources */,
 				5E890160253BAE920092DD3F /* SlideInTransition.swift in Sources */,
 				5E0461CE2591E7480021F34D /* UserStatsViewController.swift in Sources */,
+				5EF6D8A6263F7ADE00B1D5FC /* VideoAndAudioCallRepository.swift in Sources */,
 				5E89248225453FDB00C74A79 /* AppExtensions.swift in Sources */,
 				5E42F8E22560A3C00024E144 /* ProfileDetailPhotoCell.swift in Sources */,
 				5EDBA30B2515193300199C7D /* LoginViewController.swift in Sources */,
@@ -1027,6 +1048,7 @@
 				5EB7A86C25EF28FD00A62969 /* MenuProtocol.swift in Sources */,
 				5E7F6381255FBF2A0015B868 /* SearchFriendViewController.swift in Sources */,
 				5ECA4A552596BAD100A00BE4 /* CuckooPostPhotoLabel.swift in Sources */,
+				5E1C611F2636345F00A83CC4 /* UIDeviceExtension.swift in Sources */,
 				5EC7B5EB25FFF48600E62C72 /* VideoViewController.swift in Sources */,
 				5E5623BF25DA4D560004C911 /* PostRepository.swift in Sources */,
 				5E5D382C255669AE0008B057 /* MessageWithPhotoCell.swift in Sources */,
@@ -1205,6 +1227,7 @@
 			baseConfigurationReference = 202DC27D96419D3053DE7BB0 /* Pods-MyHBT-API.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MyHBT-API/HBTGram.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ADY9NV88Z3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1228,6 +1251,7 @@
 			baseConfigurationReference = B21EDCA5AEAB07CC15AAFB81 /* Pods-MyHBT-API.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "MyHBT-API/HBTGram.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ADY9NV88Z3;
 				FRAMEWORK_SEARCH_PATHS = (

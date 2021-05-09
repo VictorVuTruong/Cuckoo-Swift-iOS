@@ -50,6 +50,8 @@ class PostCommentAddPhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         // Call the function so that user can choose which photo to send
         showImagePickerController()
         

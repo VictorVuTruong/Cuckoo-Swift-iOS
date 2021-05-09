@@ -212,7 +212,7 @@ class APIOperations {
                 if let response = response as? HTTPURLResponse {
                     // Read the response
                     // If the code is 200, show alert to the user and let user know that delete was a success
-                    if (response.statusCode == 200) {
+                    if (response.statusCode == 200 || response.statusCode == 204) {
                         // Let the view controller know that delete was a success via callback function
                         completion(true)
                     }
